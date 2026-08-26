@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم أحلام ستور</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="mark">أ</div>
+    <h1>لوحة تحكم أحلام ستور</h1>
+    <p>تسجيل دخول المدير</p>
+    <input type="email" id="loginEmail" placeholder="البريد الإلكتروني">
+    <input type="password" id="loginPass" placeholder="كلمة المرور">
+    <button id="loginBtn">دخول</button>
+    <div class="login-err" id="loginErr">خطأ في البريد أو كلمة المرور</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="admin-brand">
+        <div class="mark">أ</div>
+        <div><b>أحلام ستور</b><span>لوحة التحكم</span></div>
+      </div>
+      <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="orders">الطلبات</button>
+      <button class="tab-btn" data-tab="products">المنتجات</button>
+      <button class="tab-btn" data-tab="add">إضافة منتج</button>
+      <button class="tab-btn" data-tab="stats">الإحصائيات</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ORDERS -->
+    <section class="tab-panel active" id="tab-orders">
+      <div class="panel-head"><h2>الطلبات</h2></div>
+      <div id="ordersList"></div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="tab-panel" id="tab-products">
+      <div class="panel-head"><h2>المنتجات</h2></div>
+      <div id="productsList"></div>
+    </section>
+
+    <!-- ADD / EDIT PRODUCT -->
+    <section class="tab-panel" id="tab-add">
+      <div class="panel-head"><h2 id="formTitle">إضافة منتج جديد</h2></div>
+      <div class="form-card">
+        <div class="image-upload" id="imageUpload">
+          <img id="imgPreview" style="display:none">
+          <p id="uploadHint">اضغط لاختيار صورة المنتج من الجوال 📷</p>
+          <div class="compress-note" id="compressNote"></div>
+          <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <form id="productForm">
+          <input type="hidden" id="editId">
+          <div class="form-row">
+            <div class="field">
+              <label>اسم الجهاز</label>
+              <input type="text" id="pName" required placeholder="مثال: آيفون 15 برو ماكس">
+            </div>
+            <div class="field">
+              <label>الشركة المصنعة</label>
+              <input type="text" id="pBrand" required placeholder="Apple / Samsung / Xiaomi...">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>التصنيف</label>
+              <select id="pCategory" required>
+                <option value="phone">جوالات</option>
+                <option value="watch">ساعات ذكية</option>
+                <option value="console">أجهزة بلايستيشن</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>السعر (ر.س)</label>
+              <input type="number" id="pPrice" required min="0" placeholder="0">
+            </div>
+          </div>
+          <div class="field">
+            <label>السعر قبل الخصم (اختياري)</label>
+            <input type="number" id="pOldPrice" min="0" placeholder="0">
+          </div>
+          <div class="field">
+            <label>الوصف</label>
+            <textarea id="pDesc" rows="3" placeholder="وصف مختصر عن الجهاز"></textarea>
+          </div>
+
+          <div class="field">
+            <label>المواصفات التفصيلية</label>
+            <div class="specs-list" id="specsList"></div>
+            <button type="button" class="add-spec-btn" id="addSpecBtn">+ إضافة مواصفة</button>
+          </div>
+
+          <button type="submit" class="submit-btn" id="saveProductBtn">حفظ المنتج</button>
+          <button type="button" class="cancel-edit" id="cancelEditBtn" style="display:none">إلغاء التعديل</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="tab-panel" id="tab-stats">
+      <div class="panel-head"><h2>الإحصائيات</h2></div>
+      <div class="stats-grid" id="statsGrid"></div>
+      <div class="chart-box">
+        <h3>المبيعات حسب التصنيف</h3>
+        <div id="categoryChart"></div>
+      </div>
+      <div class="chart-box">
+        <h3>المنتجات الأكثر طلباً</h3>
+        <div id="topProducts"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="../js/firebase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

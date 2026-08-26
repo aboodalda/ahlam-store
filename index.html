@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>أحلام ستور | Ahlam Store - جوالات وساعات ذكية</title>
+<meta name="description" content="أحلام ستور - متجرك السعودي لأحدث الجوالات والساعات الذكية: آيفون، سامسونج، شاومي، ريدمي، سوني، أبل ووتش">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">أ</div>
+      <div>
+        <div class="brand-name">أحلام ستور</div>
+        <span class="brand-sub">AHLAM STORE · السعودية</span>
+      </div>
+    </div>
+    <button class="cart-btn" id="cartBtn">
+      🛍️ السلة
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+  <div class="chips-wrap" id="chipsWrap">
+    <button class="chip active" data-cat="all">الكل</button>
+    <button class="chip" data-cat="phone">جوالات</button>
+    <button class="chip" data-cat="watch">ساعات ذكية</button>
+    <button class="chip" data-cat="console">أجهزة بلايستيشن</button>
+  </div>
+</header>
+
+<div class="sadu-strip"></div>
+
+<section class="hero">
+  <h1>فخامة التقنية بين يديك</h1>
+  <p>أحدث أجهزة آيفون، سامسونج، شاومي، ريدمي، سوني، والساعات الذكية — أصلية ومضمونة، توصيل داخل المملكة العربية السعودية</p>
+  <span class="flag-badge">🇸🇦 الدفع بالريال السعودي · توصيل لجميع مناطق المملكة</span>
+</section>
+
+<div class="section-title"><h2>تشكيلتنا</h2></div>
+<div class="grid" id="productGrid">
+  <!-- products injected by store.js -->
+</div>
+<div class="empty-note" id="emptyNote" style="display:none">لا توجد منتجات في هذا التصنيف حالياً</div>
+
+<footer>
+  <div class="fname">أحلام ستور</div>
+  <p>جميع الحقوق محفوظة © <span id="year"></span> — صُنع لعملائنا في المملكة العربية السعودية</p>
+</footer>
+
+<!-- Product detail overlay -->
+<div class="overlay" id="productOverlay">
+  <div class="sheet" id="productSheet"></div>
+</div>
+
+<!-- Cart overlay -->
+<div class="overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <div class="cart-head">
+      <h3>سلة المشتريات</h3>
+      <button class="sheet-close" id="closeCart" style="position:static">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>الإجمالي</span><span id="cartTotal">0 <span class="riyal">ر.س</span></span></div>
+      <button class="checkout-btn" id="checkoutBtn" disabled>إتمام الطلب</button>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout overlay -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="sheet">
+    <button class="sheet-close" id="closeCheckout">✕</button>
+    <div class="form-sheet" id="checkoutFormWrap">
+      <h3>إتمام الطلب</h3>
+      <p class="sub">عبّي بياناتك وبنتواصل معك لتأكيد الطلب</p>
+
+      <div class="order-summary" id="orderSummary"></div>
+
+      <form id="checkoutForm">
+        <div class="field">
+          <label>الاسم الكامل</label>
+          <input type="text" id="custName" required placeholder="مثال: محمد العتيبي">
+        </div>
+        <div class="field">
+          <label>رقم الجوال (واتساب)</label>
+          <input type="tel" id="custPhone" required placeholder="05xxxxxxxx">
+        </div>
+        <div class="field">
+          <label>المدينة</label>
+          <input type="text" id="custCity" required placeholder="الرياض، جدة، الدمام...">
+        </div>
+        <div class="field">
+          <label>العنوان بالتفصيل</label>
+          <textarea id="custAddress" rows="2" required placeholder="الحي، الشارع، رقم المبنى"></textarea>
+        </div>
+        <div class="field">
+          <label>ملاحظات (اختياري)</label>
+          <textarea id="custNotes" rows="2" placeholder="أي تفاصيل إضافية"></textarea>
+        </div>
+        <button type="submit" class="submit-order" id="submitOrderBtn">
+          تأكيد الطلب وإرسال عبر واتساب 📲
+        </button>
+        <div class="wa-note">سيتم إرسال طلبك إلى لوحة التحكم وواتساب المتجر مباشرة</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/store.js"></script>
+</body>
+</html>
