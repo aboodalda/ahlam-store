@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- LOGIN ---->
+<!-- LOGIN -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-card">
     <div class="mark">أ</div>
@@ -72,7 +72,16 @@
             </div>
             <div class="field">
               <label>الشركة المصنعة</label>
-              <input type="text" id="pBrand" required placeholder="Apple / Samsung / Xiaomi...">
+              <select id="pBrand" required>
+                <option value="">اختر الشركة</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="Redmi">Redmi</option>
+                <option value="Huawei">Huawei</option>
+                <option value="Sony">Sony</option>
+                <option value="PlayStation">PlayStation</option>
+              </select>
             </div>
           </div>
           <div class="form-row">
@@ -94,14 +103,36 @@
             <input type="number" id="pOldPrice" min="0" placeholder="0">
           </div>
           <div class="field">
-            <label>الوصف</label>
-            <textarea id="pDesc" rows="3" placeholder="وصف مختصر عن الجهاز"></textarea>
+            <label>وصف قصير للمنتج</label>
+            <textarea id="pDesc" rows="2" placeholder="وصف مختصر عن الجهاز"></textarea>
           </div>
 
           <div class="field">
             <label>المواصفات التفصيلية</label>
-            <div class="specs-list" id="specsList"></div>
-            <button type="button" class="add-spec-btn" id="addSpecBtn">+ إضافة مواصفة</button>
+            <div class="form-row">
+              <div class="field">
+                <label>حجم الشاشة</label>
+                <input type="text" id="specScreen" placeholder="مثال: 6.7 إنش">
+              </div>
+              <div class="field">
+                <label>الكاميرا</label>
+                <input type="text" id="specCamera" placeholder="مثال: 48 ميجابكسل">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label>البطارية</label>
+                <input type="text" id="specBattery" placeholder="مثال: 5000mAh">
+              </div>
+              <div class="field">
+                <label>الذاكرة (التخزين)</label>
+                <input type="text" id="specStorage" placeholder="مثال: 256GB">
+              </div>
+            </div>
+            <div class="field">
+              <label>الرام</label>
+              <input type="text" id="specRam" placeholder="مثال: 8GB">
+            </div>
           </div>
 
           <button type="submit" class="submit-btn" id="saveProductBtn">حفظ المنتج</button>
@@ -132,6 +163,6 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="firebase-config.js"></script>
-<script src="admin.js"></script>>
+<script src="admin.js"></script>
 </body>
 </html>
