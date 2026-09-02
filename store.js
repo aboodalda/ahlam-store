@@ -1,11 +1,18 @@
 // ===== state =====
+const BRANDS = ['Apple','Samsung','Xiaomi','Redmi','Huawei','Sony','PlayStation'];
 let PRODUCTS = [];
-let currentCategory = 'all';
+let currentBrand = 'all';
 let cart = JSON.parse(localStorage.getItem('ahlam_cart') || '[]');
 
 const grid = document.getElementById('productGrid');
 const emptyNote = document.getElementById('emptyNote');
 const toastEl = document.getElementById('toast');
+const chipsWrap = document.getElementById('chipsWrap');
+const sectionTitle = document.getElementById('sectionTitle');
+
+// build brand chips
+chipsWrap.innerHTML = `<button class="chip active" data-brand="all">الكل</button>` +
+  BRANDS.map(b=>`<button class="chip" data-brand="${b}">${b}</button>`).join('');
 
 function showToast(msg){
   toastEl.textContent = msg;
@@ -33,11 +40,12 @@ function loadProducts(){
 }
 
 function renderGrid(){
-  const list = currentCategory==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.category===currentCategory);
+  const list = currentBrand==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.brand===currentBrand);
+  sectionTitle.textContent = currentBrand==='all' ? 'تشكيلتنا' : `منتجات ${currentBrand}`;
   grid.innerHTML = '';
   if(!list.length){
     emptyNote.style.display='block';
-    emptyNote.textContent = 'لا توجد منتجات في هذا التصنيف حالياً';
+    emptyNote.textContent = 'لا توجد منتجات لهذه الشركة حالياً';
     return;
   }
   emptyNote.style.display='none';
@@ -68,13 +76,13 @@ function renderGrid(){
   });
 }
 
-// category chips
-document.getElementById('chipsWrap').addEventListener('click', e=>{
+// brand chips
+chipsWrap.addEventListener('click', e=>{
   const chip = e.target.closest('.chip');
   if(!chip) return;
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
   chip.classList.add('active');
-  currentCategory = chip.dataset.cat;
+  currentBrand = chip.dataset.brand;
   renderGrid();
 });
 
